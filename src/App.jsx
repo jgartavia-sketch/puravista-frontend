@@ -226,17 +226,25 @@ function App() {
 
       <main>
         {!selectedService ? (
-          <section className="gateway-section">
+          <section
+            className={`gateway-section gateway-theme-${activeService + 1}`}
+          >
+            <span className="gateway-ambient" aria-hidden="true" />
             <div className="gateway-heading">
               <p className="eyebrow">Pura Vista · Costa Rica</p>
               <h1>
-                ¿Qué querés
-                <span>llevar más lejos?</span>
+                Una visión.
+                <span>Tres formas de hacerla realidad.</span>
               </h1>
               <p>
-                Elegí la división que mejor responde a tu proyecto.
-                Desde aquí comienza una experiencia diseñada para vos.
+                Explorá nuestras áreas y elegí la experiencia que mejor conecta
+                con tu proyecto.
               </p>
+
+              <div className="gateway-cue" aria-hidden="true">
+                <span className="gateway-cue-line" />
+                <span>Elegí una perspectiva para continuar</span>
+              </div>
             </div>
 
             <div className="gateway-panels">
@@ -250,9 +258,14 @@ function App() {
                     key={service.name}
                     onMouseEnter={() => setActiveService(index)}
                     onFocus={() => setActiveService(index)}
+                    tabIndex={0}
                   >
                     <img src={service.image} alt={`Pura Vista ${service.name}`} />
                     <span className="panel-overlay" aria-hidden="true" />
+                    <span className="panel-glow" aria-hidden="true" />
+                    <span className="panel-giant-number" aria-hidden="true">
+                      {service.number}
+                    </span>
 
                     <div className="panel-top">
                       <span>{service.number}</span>
@@ -268,7 +281,7 @@ function App() {
                           type="button"
                           onClick={() => chooseService(service)}
                         >
-                          Explorar división
+                          Explorar esta área
                           <ArrowRight size={17} />
                         </button>
                       </div>
